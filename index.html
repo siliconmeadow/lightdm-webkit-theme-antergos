@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Default theme for the Antergos Greeter">
+    <meta name="author" content="Dustin Falgout">
+
+    <title>Default Theme for The Antergos Greeter</title>
+
+    <!--Uncomment for testing changes made to theme-->
+
+    <script type="text/javascript" src="js/mock.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"/>
+
+    <!-- Custom CSS here -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/theme.css" >
+    <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css" >
+
+    <!-- The order in which each script appears in document is VERY IMPORTANT -->
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootstrap-select.js"></script>
+    <script type="text/javascript" src="js/greeter.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            // bg switcher
+            var $btns = $(".bg-switch .bg");
+            $btns.click(function (e) {
+                e.preventDefault();
+                $btns.removeClass("active");
+                $(this).addClass("active");
+                var bg = $(this).data("img");
+                $(".header").css("background", "url('img/bgs/" + bg + "')");
+                localStorage.bgsav = $(".header").css("background");
+            });
+
+        });
+
+        $(document).ready(function () {
+            if (localStorage.getItem("bgsav") !== null) {
+                $(".header").css("background", localStorage.bgsav);
+            } else {
+            }
+        });
+
+        function showAlert() {
+            $("#login").addClass("in");
+        }
+
+        window.setTimeout(function () {
+            showAlert();
+        }, 2000);
+
+        $(document).ready(function () {
+            $('#hostname').load('/etc/hostname');
+        });
+
+    </script>
+
+</head>
+
+<body>
+
+<!-- BG Switcher -->
+<a id="bg-switch-toggle" href="#" class="btn btn-primary btn-lg toggle">
+    <i class="fa fa-bars"></i>
+</a>
+
+<div id="bg-switch-wrapper">
+    <div class="bg-switch-container">
+        <a id="bg-switch-close" href="#" class="btn btn-default btn-lg pull-right toggle">
+            <i class="fa fa-times"></i>
+        </a>
+
+        <div class="bg-switch">
+            <h3>Background Options</h3>
+
+            <div class="clearfix"></div>
+            <div class="bgs">
+                <a href="#" data-img="spain.jpg" class="bg clearfix active">
+                    <img src="img/bgs/spain.jpg"/>
+                </a>
+                <a href="#" data-img="greece.jpg" class="bg clearfix">
+                    <img src="img/bgs/greece.jpg"/>
+                </a>
+                <a href="#" data-img="aspen.jpg" class="bg clearfix">
+                    <img src="img/bgs/aspen.jpg"/>
+                </a>
+                <a href="#" data-img="germany.jpg" class="bg clearfix">
+                    <img src="img/bgs/germany.jpg"/>
+                </a>
+                <a href="#" data-img="paris.jpg" class="bg clearfix">
+                    <img src="img/bgs/paris.jpg"/>
+                </a>
+                <a href="#" data-img="italy.jpg" class="bg clearfix">
+                    <img src="img/bgs/italy.jpg"/>
+                </a>
+                <a href="#" data-img="travel.jpg" class="bg clearfix">
+                    <img src="img/bgs/travel.jpg"/>
+                </a>
+                <a href="#" data-img="world-wide.jpg" class="bg clearfix">
+                    <img src="img/bgs/world-wide.jpg"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /BG Switcher Sidebar -->
+
+<!-- Full Page Image Header Area -->
+<div id="top" class="header">
+    <div class="login-wrapper">
+        <div class="login-cell">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <!-- Login Dialog -->
+                        <div id="login" class="panel panel-default login-box fade">
+                            <div class="panel-heading text-center">
+                                <span class="pull-left"><img src="img/antergos.png" alt="Antergos"/></span>
+                                <span>Welcome!</span>
+                                <span id="hostname" class="pull-right"></span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="panel-group panel-shadow center-block" id="accordion">
+                                    <div class="panel panel-default panel-shadow time-panel">
+
+
+                                        <div id="collapseOne" class="panel-collapse collapse in">
+                                            <div class="panel-body panel-shadow time-panel text-center">
+                                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                                    <!-- Clock Widget -->
+                                                    <span id="current_time" class="time text-center"></span><i
+                                                        class="fa fa-toggle-up"></i></a>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="panel panel-default panel-shadow panel-flow">
+                                        <!-- User Selection Widget -->
+                                        <div id="collapseTwo" class="panel-collapse collapse">
+                                            <div class="panel-body">
+
+                                                <div class="user-wrap">
+                                                    <div class="user-selection">
+                                                        <ul id="user-list">
+                                                        </ul>
+                                                        <a id="user-target" class="user-toggle" data-toggle="collapse"
+                                                           data-parent="#accordion" href="#collapseOne">
+                                                            <i class="fa fa-toggle-down"></i> </a>
+                                                    </div>
+
+                                                </div>
+                                                <!-- Password Input -->
+                                                <div id="passwordArea" class="password">
+                                                    <table border="0" align="center">
+                                                        <tr>
+                                                            <td class="input-group"><input id="passwordField"
+                                                                                           type="password"
+                                                                                           class="password form-control"/>
+
+                                                                <div class="input-group-btn">
+                                                                    <button class="btn btn-primary" type="button"
+                                                                            onclick="submitPassword()"><i
+                                                                            class="fa fa-sign-in"></i></button>
+                                                                    <button type="button"
+                                                                            class="btn btn-primary dropdown-toggle"
+                                                                            data-toggle="dropdown"><span
+                                                                            class="caret"></span>
+                                                                    </button>
+                                                                    <ul class="dropdown-menu pull-right">
+                                                                        <li><a href="#"
+                                                                               onclick="cancelAuthentication()"><i
+                                                                                class="fa fa-times"></i> Cancel</a></li>
+                                                                    </ul>
+                                                                </div>
+                                                            </td>
+
+
+                                                        </tr>
+                                                    </table>
+                                                    <div id="timerArea" class="timer"><i class="fa fa-spinner fa-spin"></i>
+                                                    </div>
+                                                </div>
+                                                <!-- Status Area -->
+                                                <div id="statusArea" class="status">
+                                                    <table border="0" align="center">
+                                                        <tr>
+                                                            <td>
+                                                                <div class="alert alert-danger alert-dismissable">
+                                                                    <button type="button" class="close"
+                                                                            onclick="startAuthentication()"
+                                                                            data-dismiss="alert"
+                                                                            aria-hidden="true">&times;</button>
+                                                                    <strong>Oops!</strong> Authentication failed. Please
+                                                                    try again.
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="panel-footer text-right">
+                                <div id="actionsArea" class="btn-group btn"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="logArea" class="log"></div>
+    </div>
+    </div>
+
+
+    <!-- Custom JavaScript for the BG Switcher & Clock Toggle -->
+    <script>
+        $("#bg-switch-close").click(function (e) {
+            e.preventDefault();
+            $("#bg-switch-wrapper").toggleClass("active");
+            $(this).hide();
+            $("#bg-switch-toggle").show();
+        });
+    </script>
+    <script>
+        $("#bg-switch-toggle").click(function (e) {
+            e.preventDefault();
+            $("#bg-switch-wrapper").toggleClass("active");
+            $(this).hide();
+            $("#bg-switch-close").show();
+        });
+        $('#user-target').click(function (e) {
+            $(this).addClass('hide');
+        });
+        $('#user-target-undo,#current_time').click(function (e) {
+            $('#user-target').removeClass('hide');
+        });
+    </script>
+
+</body>
+
+</html>
