@@ -25,9 +25,9 @@ h2. Installation
 
 Arch users can install using their favorite AUR pacman wrapper. Others can install manually:
 
-# Download "Antergos Theme":https://github.com/lots0logs/lightdm-webkit-theme-antergos/zipball/master
+# Download "Antergos Theme":https://github.com/Antergos/lightdm-webkit-theme-antergos/zipball/master
 # Unzip it.
-# This should create a folder named like @lots0logs-lightdm-webkit-theme-antergos-28c4b13@
+# This should create a folder named like @Antergos-lightdm-webkit-theme-antergos-28c4b13@
 # Rename this folder to @antergos@ (so that the complete path becomes @/usr/share/lightdm-webkit/themes/antergos@)
 # Edit the resource @/etc/lightdm/lightdm-webkit-greeter.conf@ and set @webkit-theme@ property to @antergos@ :
 
