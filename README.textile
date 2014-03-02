@@ -11,6 +11,7 @@ h2. Screenshot
 h2. Prerequisites
 
 Both lightdm and lightdm-webkit-greeter are required.
+antergos-wallpapers used for the background switcher
 
 Enable @ligthdm-webkit-greeter@ by editing @/etc/lightdm/lightdm.conf@ and setting @greeter-session@ property to @lightdm-webkit-greeter@ :
 
