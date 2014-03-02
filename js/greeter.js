@@ -15,13 +15,9 @@ $(document).ready(function() {
 	{
 		user = lightdm.users[i];
         var tux = [
-            'img/tux/default.png',
-            'img/tux/1.png',
-            'img/tux/2.png',
-            'img/tux/3.png',
-            'img/tux/4.png',
-            'img/tux/5.png',
-            'img/tux/6.png'
+            'img/antergos-logo-user.png',
+            'img/antergos-logo-user.png',
+            'img/antergos-logo-user.png'
         ];
 		var imageSrc = user.image.length > 0 ? user.image : tux[i];
 		var li = '<li id="' + user.name + '">' +
@@ -138,7 +134,7 @@ function submitPassword()
  */
 
 function imgNotFound(source){
-	source.src = 'img/tux/default.png';
+	source.src = 'img/antergos-logo-user.png';
 	source.onerror = "";
 	return true;
 }
