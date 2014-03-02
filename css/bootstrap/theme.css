@@ -10,10 +10,15 @@ License: 	GPL
 
 /* Global Styles */
 
+.close_wallpapers{
+    padding: 2px 10px !important;
+}
+
 html,
 body {
     height: 100%;
     width: 100%;
+    background-color: white;
 }
 
 i {
@@ -39,7 +44,7 @@ a {
     bottom: 0;
     left: 0;
     width: 250px;
-    margin: auto;
+    margin: 40px auto auto;
     padding: 0px 53px;
     color: #f5f5f5;
 }
@@ -93,10 +98,11 @@ a {
     right: 250px;
     width: 250px;
     transition: all 0.4s ease 0s;
+    overflow-x: hidden;
 }
 
 .toggle {
-    margin: 5px 5px 0 0;
+    margin: 5px 20px 0 0;
 }
 
 /* Full Page Image Header Area */
@@ -106,7 +112,7 @@ a {
     height: 100%;
     width: 100%;
     position: relative;
-    background: url(../../img/bgs/spain.jpg);
+    background: url(/usr/share/antergos/wallpapers/antergos-wallpaper.png);
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -122,7 +128,6 @@ a {
     text-decoration: none;
     color: #3d73c5;
     background-color: rgb(252, 247, 247);
-    text-shadow: rgba(0, 0, 0, 0.2) 2px 6px 5px, rgba(255, 255, 255, 0.4) 0px -4px 30px;
     transition: 1s ease-out;
 
 }
@@ -134,8 +139,8 @@ a {
 
 .time:hover {
     cursor: pointer;
-    color: #ffffff;
-    text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7);
+    color: #77ADFF;
+    /* text-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7); */
 }
 
 .time-panel {
@@ -376,7 +381,7 @@ matches your images. */
     .bg-switch {
         position: relative;
         width: 250px;
-        margin: auto;
+        margin: 40px auto auto;
         padding: 0px 74px;
     }
 

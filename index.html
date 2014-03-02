@@ -36,7 +36,10 @@
                 $btns.removeClass("active");
                 $(this).addClass("active");
                 var bg = $(this).data("img");
-                $(".header").css("background", "url('img/bgs/" + bg + "')");
+                
+                $('.header').fadeTo('slow', 0.3, function(){
+                    $(".header").css("background", "url('/usr/share/antergos/wallpapers/" + bg + "')");
+                }).fadeTo('slow', 1);
                 localStorage.bgsav = $(".header").css("background");
             });
 
@@ -68,13 +71,13 @@
 <body>
 
 <!-- BG Switcher -->
-<a id="bg-switch-toggle" href="#" class="btn btn-primary btn-lg toggle">
+<a id="bg-switch-toggle" href="#" class="btn btn-primary btn-lg toggle close_wallpapers">
     <i class="fa fa-bars"></i>
 </a>
 
 <div id="bg-switch-wrapper">
     <div class="bg-switch-container">
-        <a id="bg-switch-close" href="#" class="btn btn-default btn-lg pull-right toggle">
+        <a id="bg-switch-close" href="#" class="btn btn-default btn-lg pull-right toggle close_wallpapers">
             <i class="fa fa-times"></i>
         </a>
 
@@ -83,29 +86,68 @@
 
             <div class="clearfix"></div>
             <div class="bgs">
-                <a href="#" data-img="spain.jpg" class="bg clearfix active">
-                    <img src="img/bgs/spain.jpg"/>
+                <a href="#" data-img="antergos-wallpaper.png" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/antergos-wallpaper.png"/>
                 </a>
-                <a href="#" data-img="greece.jpg" class="bg clearfix">
-                    <img src="img/bgs/greece.jpg"/>
+                <a href="#" data-img="83II_by_bo0xVn.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/83II_by_bo0xVn.jpg"/>
                 </a>
-                <a href="#" data-img="aspen.jpg" class="bg clearfix">
-                    <img src="img/bgs/aspen.jpg"/>
+                <a href="#" data-img="as_time_goes_by____by_moskanon-d5dgvt8.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/as_time_goes_by____by_moskanon-d5dgvt8.jpg"/>
                 </a>
-                <a href="#" data-img="germany.jpg" class="bg clearfix">
-                    <img src="img/bgs/germany.jpg"/>
+                <a href="#" data-img="autumn_hike___plant_details_by_aoiban-d5l7y83.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/autumn_hike___plant_details_by_aoiban-d5l7y83.jpg"/>
                 </a>
-                <a href="#" data-img="paris.jpg" class="bg clearfix">
-                    <img src="img/bgs/paris.jpg"/>
+                <a href="#" data-img="blossom_by_snipes2.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/blossom_by_snipes2.jpg"/>
                 </a>
-                <a href="#" data-img="italy.jpg" class="bg clearfix">
-                    <img src="img/bgs/italy.jpg"/>
+                <a href="#" data-img="Blue_by_ElSlunko.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/Blue_by_ElSlunko.jpg"/>
                 </a>
-                <a href="#" data-img="travel.jpg" class="bg clearfix">
-                    <img src="img/bgs/travel.jpg"/>
+                <a href="#" data-img="early_morning_by_kylekc.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/early_morning_by_kylekc.jpg"/>
                 </a>
-                <a href="#" data-img="world-wide.jpg" class="bg clearfix">
-                    <img src="img/bgs/world-wide.jpg"/>
+                <a href="#" data-img="extinction_by_signcropstealer-d5j4y84.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/extinction_by_signcropstealer-d5j4y84.jpg"/>
+                </a>
+                <a href="#" data-img="field_by_stevenfields-d59ap2i.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/field_by_stevenfields-d59ap2i.jpg"/>
+                </a>
+                <a href="#" data-img="Grass_by_masha_darkelf666.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/Grass_by_masha_darkelf666.jpg"/>
+                </a>
+                <a href="#" data-img="Grass_Fullscreen.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/Grass_Fullscreen.jpg"/>
+                </a>
+                <a href="#" data-img="humble_by_splendidofsun-d5g47hb.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/humble_by_splendidofsun-d5g47hb.jpg"/>
+                </a>
+                <a href="#" data-img="In_the_Grass.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/In_the_Grass.jpg"/>
+                </a>
+                <a href="#" data-img="morning_light_by_l33tc4k3-d5d2yu0.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/morning_light_by_l33tc4k3-d5d2yu0.jpg"/>
+                </a>
+                <a href="#" data-img="Nautilus_Fullscreen.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/Nautilus_Fullscreen.jpg"/>
+                </a>
+                <a href="#" data-img="nikon_d40_test_by_desirefire1-d5fghdc.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/nikon_d40_test_by_desirefire1-d5fghdc.jpg"/>
+                </a>
+                <a href="#" data-img="solely_by_stevenfields-d5g1c2o.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/solely_by_stevenfields-d5g1c2o.jpg"/>
+                </a>
+                <a href="#" data-img="spiky_drop_by_jstainthorpeimages-d5l8ehm.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/spiky_drop_by_jstainthorpeimages-d5l8ehm.jpg"/>
+                </a>
+                <a href="#" data-img="the_world_inside_my_lens__by_moskanon-d5fsiqs.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/the_world_inside_my_lens__by_moskanon-d5fsiqs.jpg"/>
+                </a>
+                <a href="#" data-img="um_pouco_de_cinza_by_Mara.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/um_pouco_de_cinza_by_Mara.jpg"/>
+                </a>
+                <a href="#" data-img="white_line_by_snipes2.jpg" class="bg clearfix active">
+                    <img src="/usr/share/antergos/wallpapers/white_line_by_snipes2.jpg"/>
                 </a>
             </div>
         </div>
