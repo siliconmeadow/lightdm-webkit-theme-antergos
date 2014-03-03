@@ -1,4 +1,4 @@
-var DEBUG = false;
+var DEBUG = true;
 var selectedUser = null;
 
 /**
@@ -8,18 +8,15 @@ $(document).ready(function() {
 
     initialize_timer();
     get_hostname();
+    
 	// User list building
 	var userList = document.getElementById('user-list');
 
 	for (i in lightdm.users)
 	{
 		user = lightdm.users[i];
-        var tux = [
-            'img/antergos-logo-user.png',
-            'img/antergos-logo-user.png',
-            'img/antergos-logo-user.png'
-        ];
-		var imageSrc = user.image.length > 0 ? user.image : tux[i];
+        var tux = 'img/antergos-logo-user.png';
+		var imageSrc = user.image.length > 0 ? user.image : tux;
 		var li = '<li id="' + user.name + '">' +
 			'<a href="#' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')">' +
 			'<em><span>' + user.display_name + '</span></em>' + 
@@ -49,10 +46,6 @@ $(document).ready(function() {
 	addActionLink("suspend");
 	addActionLink("restart");
 
-	// Logs ?
-	if (DEBUG) {
-		$("#logArea").show();
-	}
 });
 
 function get_hostname() {
@@ -81,6 +74,7 @@ function update_time() {
     }
     if (mm < 10) {mm = "0"+mm;}
     if (ss < 10) {ss = "0"+ss;}
+    if (hh === 0) {hh = "12";}
     time.innerHTML= hh+":"+mm + " " + suffix;
 }
 

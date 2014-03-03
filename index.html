@@ -9,8 +9,7 @@
 
     <title>Default Theme for The Antergos Greeter</title>
 
-    <!--Uncomment for testing changes made to theme-->
-
+    <!--For testing changes made to theme in any web browser-->
     <script type="text/javascript" src="js/mock.js"></script>
 
     <!-- Bootstrap Core CSS -->
@@ -58,11 +57,11 @@
 
         window.setTimeout(function () {
             showAlert();
-        }, 2000);
-
-        $(document).ready(function () {
-            $('#hostname').load('/etc/hostname');
-        });
+        }, 500);
+        
+        function showLog() {
+            $("#logArea").show();
+        }
 
     </script>
 
@@ -157,7 +156,7 @@
                         <div id="login" class="panel panel-default login-box fade">
                             <div class="panel-heading text-center">
                                 <span class="pull-left"><img src="img/antergos.png" alt="Antergos"/></span>
-                                <span>Welcome!</span>
+                                <span class="welcome">Welcome!</span>
                                 <span id="hostname" class="pull-right"></span>
                             </div>
                             <div class="panel-body">
@@ -213,6 +212,8 @@
                                                                         <li><a href="#"
                                                                                onclick="cancelAuthentication()"><i
                                                                                 class="fa fa-times"></i> Cancel</a></li>
+                                                                        <li><a href="#" onclick="showLog()"><i
+                                                                                class="fa fa-bug"></i> View Log</a></li>
                                                                     </ul>
                                                                 </div>
                                                             </td>
