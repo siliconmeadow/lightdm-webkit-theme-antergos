@@ -1,7 +1,6 @@
 /* --------------------------------------------
 Antergos Greeter Default Theme Stylesheet
 
-Version: 	1.0
 Author:		Dustin Falgout
 URL: 		http://antergos.com/
 Copyright: 	(c)2013 by Antergos Developers
@@ -9,6 +8,31 @@ License: 	GPL
 ----------------------------------------------- */
 
 /* Global Styles */
+
+
+@font-face{
+font-family: Lato;
+src: url('../../font-awesome/fonts/Lato.ttf');
+}
+
+@font-face{
+font-family: LatoLight;
+src: url('../../font-awesome/fonts/Lato-Light.ttf');
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #5d5d5d;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #b3b3b3;
+}
 
 .close_wallpapers{
     padding: 2px 10px !important;
@@ -19,16 +43,18 @@ body {
     height: 100%;
     width: 100%;
     background-color: white;
+    font-family: "Lato", "Open Sans", sans-serif;
 }
 
 i {
     font-size: 17px;
 }
 
-h3 {
+h3, .panel-heading {
     font-family: "Lato", "Open Sans", sans-serif;
-    font-size: 17px;
+    font-size: 18px;
     text-align: center;
+    font-weight: 500;
 }
 
 a {
@@ -112,7 +138,7 @@ a {
     height: 100%;
     width: 100%;
     position: relative;
-    background: url(/usr/share/antergos/wallpapers/antergos-wallpaper.png);
+    background-image: url('/usr/share/antergos/wallpapers/antergos-wallpaper.png');
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -122,8 +148,8 @@ a {
 /* Clock Widget */
 
 .time {
-    font-family: "Lato", "Open Sans", sans-serif;
-    font-size: 72px;
+    font-family: "LatoLight", "Open Sans", sans-serif;
+    font-size: 96px;
     line-height: 1em;
     text-decoration: none;
     color: #3d73c5;
@@ -157,6 +183,11 @@ a {
 }
 
 /* Login Dialog */
+
+.welcome {
+    position: relative;
+    left:-2%;
+}
 
 .login-wrapper {
     list-style-type: none;
@@ -203,15 +234,19 @@ div.password, div.status, div.timer {
     display: none;
 }
 
-div.log {
+#logArea {
     position: absolute;
-    top: 0%;
-    left: 0%;
+    top: 25%;
+    left: 5%;
     width: 25%;
-    height: 80%;
-    overflow: scroll;
+    height: 50%;
     display: none;
-    font-size: 65%;
+    overflow: auto;
+    color: #fff;
+    background: rgba(0,0,0,0.6);
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 20px;
 }
 
 /* Animation */
