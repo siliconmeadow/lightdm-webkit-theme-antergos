@@ -237,7 +237,7 @@
 .fa-search-minus:before {
   content: "\f010";
 }
-.fa-shutdown:before {
+.fa-power-off:before {
   content: "\f011";
 }
 .fa-signal:before {
@@ -281,7 +281,7 @@
 .fa-repeat:before {
   content: "\f01e";
 }
-.fa-restart:before {
+.fa-refresh:before {
   content: "\f021";
 }
 .fa-list-alt:before {
@@ -472,7 +472,7 @@
 .fa-arrow-up:before {
   content: "\f062";
 }
-.fa-suspend:before {
+.fa-arrow-down:before {
   content: "\f063";
 }
 .fa-mail-forward:before,
@@ -491,7 +491,7 @@
 .fa-minus:before {
   content: "\f068";
 }
-.fa-hibernate:before {
+.fa-asterisk:before {
   content: "\f069";
 }
 .fa-exclamation-circle:before {

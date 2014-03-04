@@ -85,8 +85,13 @@ function initialize_timer() {
 
 function addActionLink(id) {
 	if (eval("lightdm.can_" + id)) {
-		var label = id.substr(0,1).toUpperCase() + id.substr(1,id.length-1); 
-		$("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + '" title="' + label + '" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id + '"></i></button>');
+		var label = id.substr(0,1).toUpperCase() + id.substr(1,id.length-1);
+        var id2;
+        if (id == "shutdown") {id2 = "power-off"}
+        if (id == "hibernate") {id2 = "asterisk"}
+        if (id == "suspend") {id2 = "arrow-down"}
+        if (id == "restart") {id2 = "refresh"}
+		$("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + '" title="' + label + '" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
 	}
 }
 
