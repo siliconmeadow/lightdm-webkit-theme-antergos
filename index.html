@@ -40,14 +40,17 @@
                 $('.header').fadeTo('slow', 0.3,function () {
                     $(".header").css("background", "url('/usr/share/antergos/wallpapers/" + bg + "')");
                 }).fadeTo('slow', 1);
-                localStorage.bgsaved = $(".header").css("background");
+                var bgurl = "url('/usr/share/antergos/wallpapers/" + bg + "')";
+                localStorage.setItem("bgsaved", bgurl)
             });
 
         });
 
         $(document).ready(function () {
             if (localStorage.getItem("bgsaved") !== null) {
-                $(".header").css("background", localStorage.bgsaved);
+                $('.header').fadeTo('slow', 0.3,function () {
+                    $(".header").css("background", localStorage.bgsaved);
+                }).fadeTo('slow', 1);
             } else {
             }
         });
@@ -215,8 +218,10 @@
                                                                                 class="fa fa-times"></i> Cancel</a></li>
                                                                         <li><a href="#" onclick="showLog()"><i
                                                                                 class="fa fa-bug"></i> View Log</a></li>
-                                                                        <li><a href="#" onclick="$(document.location.reload(true))"><i
-                                                                                class="fa fa-refresh"></i> Reset</a></li>
+                                                                        <li><a href="#"
+                                                                               onclick="$(document.location.reload(true))"><i
+                                                                                class="fa fa-refresh"></i> Reset</a>
+                                                                        </li>
                                                                     </ul>
                                                                 </div>
                                                             </td>
