@@ -81,7 +81,7 @@ a {
 }
 
 .bg-switch .bgs .bg.active img {
-    border-color: #04307C;
+    border-color: #3d73c5;
 }
 
 .bg-switch .bgs .bg img {
@@ -226,6 +226,10 @@ a {
 
 .panel-footer {
     padding: 5px !important;
+}
+
+.password ul {
+    text-align: left;
 }
 
 div.password, div.status, div.timer {
@@ -425,20 +429,19 @@ matches your images. */
         text-decoration: none;
     }
 
-    .bg-switch .bgs .bg.active img {
-        border-color: #04307C;
-    }
-
     .bg-switch .bgs .bg img {
         width: 102px;
         height: 67px;
-        border: 2px solid #ffffff;
         margin-bottom: 5px;
-        cursor: pointer;
     }
 
     h3 {
         margin-top: 10px;
         margin-bottom: 8px;
     }
+
+    #logArea {
+top: 24%;
+left: 2%;
+}
 }
