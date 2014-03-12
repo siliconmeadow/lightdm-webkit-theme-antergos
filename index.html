@@ -28,30 +28,57 @@
 
     <script type="text/javascript">
 
+        function randomBG(){
+            localStorage.setItem("bgsaved", '');
+            $(".bgs .bg .random").first().addClass('active');
+            var arrayBackground = [];
+            $('.bgs .clearfix').each( function() {
+                 arrayBackground.push($(this).attr('data-img'));   
+            });
+            var randBG = arrayBackground[Math.floor(Math.random() * arrayBackground.length)];
+            $('.header').fadeTo('slow', 0.3,function () {
+                    $(".header").css("background", "url('/usr/share/antergos/wallpapers/" + randBG + "')");
+            }).fadeTo('slow', 1);
+        }
+
         $(function () {
             // bg switcher
             var $btns = $(".bg-switch .bg");
             $btns.click(function (e) {
                 e.preventDefault();
                 $btns.removeClass("active");
+                $(".bgs .bg .random").first().removeClass('active');
                 $(this).addClass("active");
                 var bg = $(this).data("img");
-
-                $('.header').fadeTo('slow', 0.3,function () {
-                    $(".header").css("background", "url('/usr/share/antergos/wallpapers/" + bg + "')");
-                }).fadeTo('slow', 1);
-                var bgurl = "url('/usr/share/antergos/wallpapers/" + bg + "')";
-                localStorage.setItem("bgsaved", bgurl)
+                if (bg == 'random'){
+                    console.log("Sets random background");
+                    localStorage.setItem("bgrandom", '1');
+                    randomBG();
+                }else{
+                    console.log("Turn off random");
+                    localStorage.setItem("bgrandom", '0');
+                    $('.header').fadeTo('slow', 0.3,function () {
+                        $(".header").css("background", "url('/usr/share/antergos/wallpapers/" + bg + "')");
+                    }).fadeTo('slow', 1);
+                    var bgurl = "url('/usr/share/antergos/wallpapers/" + bg + "')";
+                    localStorage.setItem("bgsaved", bgurl)
+                }
             });
 
         });
 
         $(document).ready(function () {
-            if (localStorage.getItem("bgsaved") !== null) {
+            if ((localStorage.getItem("bgsaved") !== null) && (localStorage.getItem("bgrandom") == '0')){
                 $('.header').fadeTo('slow', 0.3,function () {
                     $(".header").css("background", localStorage.bgsaved);
                 }).fadeTo('slow', 1);
-            } else {
+            }
+            if (localStorage.getItem("bgrandom") !== '0') {
+                console.log("Is random");
+                randomBG();
+            }
+            if (localStorage.getItem("bgrandom") == null){
+                localStorage.setItem("bgrandom", "1");
             }
         });
 
@@ -89,6 +116,11 @@
 
             <div class="clearfix"></div>
             <div class="bgs">
+                <a href="#" data-img="random" class="bg">
+                    <div class="random">
+                        <span>Random</span>
+                    </div>
+                </a>
                 <a href="#" data-img="antergos-wallpaper.png" class="bg clearfix">
                     <img src="img/thumbs/antergos-wallpaper.png"/>
                 </a>
