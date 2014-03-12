@@ -138,7 +138,7 @@ a {
     height: 100%;
     width: 100%;
     position: relative;
-    background-image: url('/usr/share/antergos/wallpapers/antergos-wallpaper.png');
+    background-image: url('');
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
@@ -444,4 +444,22 @@ matches your images. */
 top: 24%;
 left: 2%;
 }
+}
+
+
+.random {
+    width: 102px;
+    height: 67px;
+    background: rgba(111, 111, 111, 0.65);
+    margin-bottom: 5px;
+    padding-top: 24px;
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.random:hover {
+    color: white;
+    background: rgba(111, 111, 111, 0.85);
+}
+.random.active {
+    border: 2px solid #3d73c5;
 }
