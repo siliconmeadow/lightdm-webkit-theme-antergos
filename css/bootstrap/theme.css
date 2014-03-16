@@ -441,9 +441,9 @@ matches your images. */
     }
 
     #logArea {
-top: 24%;
-left: 2%;
-}
+        top: 24%;
+        left: 2%;
+    }
 }
 
 
