@@ -60,21 +60,42 @@ function get_hostname() {
  *
  */
 
+
 function update_time() {
     var time= document.getElementById("current_time");
     var date= new Date();
+
+    var twelveHr= [
+            'sq-AL.UTF-8',
+            'zh-CN.UTF-8',
+            'zh-TW.UTF-8',
+            'en-AU.UTF-8',
+            'en-BZ.UTF-8',
+            'en-CA.UTF-8',
+            'en-CB.UTF-8',
+            'en-JM.UTF-8',
+            'en-NG.UTF-8',
+            'en-NZ.UTF-8',
+            'en-PH.UTF-8',
+            'en-US.UTF-8',
+            'en-TT.UTF-8',
+            'en-ZW.UTF-8',
+            'es-US.UTF-8',
+            'es-MX.UTF-8'];
+var userLang = navigator.language || navigator.userLanguage;
+var a= twelveHr.indexOf(userLang) ;
 
     var hh = date.getHours();
     var mm = date.getMinutes();
     var ss = date.getSeconds();
     var suffix= "AM";
-    if (hh > 12) {
+    if ((hh > 12) && (a !== -1)) {
         hh= hh - 12;
         suffix= "PM";
     }
     if (mm < 10) {mm = "0"+mm;}
     if (ss < 10) {ss = "0"+ss;}
-    if (hh === 0) {hh = "12";}
+    if ((hh === 0)&& (a !== -1)) {hh = "12";}
     time.innerHTML= hh+":"+mm + " " + suffix;
 }
 

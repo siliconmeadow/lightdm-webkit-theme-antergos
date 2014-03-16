@@ -32,8 +32,10 @@
             localStorage.setItem("bgsaved", '');
             $(".bgs .bg .random").first().addClass('active');
             var arrayBackground = [];
-            $('.bgs .clearfix').each( function() {
-                 arrayBackground.push($(this).attr('data-img'));   
+            $('.bgs .clearfix').each( function(i) {
+                if (i > 0) {
+                 arrayBackground.push($(this).attr('data-img'));
+                }
             });
             var randBG = arrayBackground[Math.floor(Math.random() * arrayBackground.length)];
             $('.header').fadeTo('slow', 0.3,function () {
@@ -116,7 +118,7 @@
 
             <div class="clearfix"></div>
             <div class="bgs">
-                <a href="#" data-img="random" class="bg">
+                <a href="#" data-img="random" class="bg clearfix">
                     <div class="random">
                         <span>Random</span>
                     </div>
