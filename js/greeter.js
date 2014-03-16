@@ -83,20 +83,22 @@ function update_time() {
             'es-US.UTF-8',
             'es-MX.UTF-8'];
 var userLang = navigator.language || navigator.userLanguage;
-var a= twelveHr.indexOf(userLang) ;
+var a = twelveHr.indexOf(userLang) ;
 
     var hh = date.getHours();
     var mm = date.getMinutes();
     var ss = date.getSeconds();
     var suffix= "AM";
-    if ((hh > 12) && (a !== -1)) {
-        hh= hh - 12;
+    if (hh > 12) {
+    	if(a !== -1){
+    		hh = hh - 12;
+    	}
         suffix= "PM";
     }
     if (mm < 10) {mm = "0"+mm;}
     if (ss < 10) {ss = "0"+ss;}
     if ((hh === 0)&& (a !== -1)) {hh = "12";}
-    time.innerHTML= hh+":"+mm + " " + suffix;
+    time.innerHTML = hh + ":" + mm + " " + suffix;
 }
 
 function initialize_timer() {
