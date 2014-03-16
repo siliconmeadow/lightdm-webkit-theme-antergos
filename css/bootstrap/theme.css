@@ -448,14 +448,21 @@ left: 2%;
 
 
 .random {
-    width: 102px;
-    height: 67px;
     background: rgba(111, 111, 111, 0.65);
-    margin-bottom: 5px;
-    padding-top: 24px;
+    text-align: center;
+    display: table;
     color: rgba(255, 255, 255, 0.72);
+    width: 145px;
+    height: 95px;
+    border: 2px solid #ffffff;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding-top: 35px;
 }
 
+.random span {
+    font-size: 18px;
+}
 .random:hover {
     color: white;
     background: rgba(111, 111, 111, 0.85);
