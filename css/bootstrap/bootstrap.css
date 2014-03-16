@@ -1278,7 +1278,7 @@ pre code {
 
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width: 100%;
   }
   .col-md-1,
   .col-md-2,
