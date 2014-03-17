@@ -42,7 +42,7 @@ html,
 body {
     height: 100%;
     width: 100%;
-    background-color: white;
+    background-color: #000000;
     font-family: "Lato", "Open Sans", sans-serif;
 }
 
@@ -186,7 +186,7 @@ a {
 
 .welcome {
     position: relative;
-    left:-2%;
+    left:-1%;
 }
 
 .login-wrapper {
