@@ -272,13 +272,14 @@
                                                     <table border="0" align="center">
                                                         <tr>
                                                             <td>
-                                                                <div class="alert alert-danger alert-dismissable">
+                                                                <div class="alert alert-danger  fade in">
                                                                     <button type="button" class="close"
                                                                             onclick="startAuthentication()"
                                                                             data-dismiss="alert"
                                                                             aria-hidden="true">&times;</button>
-                                                                    <strong>Oops!</strong> Authentication failed. Please
-                                                                    try again.
+                                                                    <span id="showMsg">
+                                                                        <strong>Oops!</strong> Authentication failed. Please try again.
+                                                                        </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -324,7 +325,6 @@
     });
 
     // Show user list when pressed any key
-    // Works the first time but shows moved elements when showing back clock
      $(document).keypress(function (e) {
          if ( $('#collapseOne').hasClass('in') ) {
              $('#trigger').trigger('click');

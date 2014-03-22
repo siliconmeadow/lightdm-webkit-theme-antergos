@@ -58,12 +58,9 @@ function get_hostname() {
  *
  *
  */
-
-
 function update_time() {
     var time = document.getElementById("current_time");
     var date = new Date();
-
     var twelveHr = [
         'sq-AL',
         'zh-CN',
@@ -81,24 +78,22 @@ function update_time() {
         'en-ZW',
         'es-US',
         'es-MX'];
-    var userLang = navigator.language;
-    var a = twelveHr.indexOf(userLang);
+    var userLang = navigator.language || navigator.userLanguage;
+    var is_twelveHr = twelveHr.indexOf(userLang);
     var hh = date.getHours();
     var mm = date.getMinutes();
     var suffix = "AM";
-    if (hh > 12) {
-        if (a !== -1) {
+    if (hh >= 12) {
+        suffix = "PM";
+        if (is_twelveHr !== -1 && is_twelveHr !== 12) {
             hh = hh - 12;
         }
-        suffix = "PM";
     }
     if (mm < 10) {
         mm = "0" + mm;
     }
-    if (hh === 0) {
-        if (a !== -1) {
-            hh = "12";
-        }
+    if (hh === 0 && is_twelveHr !== -1) {
+        hh = 12;
     }
     time.innerHTML = hh + ":" + mm + " " + suffix;
 }
@@ -192,6 +187,19 @@ function authentication_complete() {
         log("not authenticated !");
         $('#statusArea').show();
     }
+}
+
+function show_message(text) {
+    msgWrap = document.getElementById('#statusArea');
+    showMsg = document.getElementById('showMsg');
+    showMsg.innerHTML = text;
+    if (text.length > 0) {
+        msgWrap.show();
+    }
+}
+
+function show_error(text) {
+    show_message(text);
 }
 
 /**
