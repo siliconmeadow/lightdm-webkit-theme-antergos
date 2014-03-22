@@ -132,6 +132,7 @@ function startAuthentication(userId) {
     log("startAuthentication(" + userId + ")");
     cancelAuthentication();
     selectedUser = userId;
+    $('#passwordArea').show();
     lightdm.start_authentication(selectedUser);
 }
 
@@ -139,6 +140,7 @@ function cancelAuthentication() {
     log("cancelAuthentication()");
     $('#statusArea').hide();
     $('#timerArea').hide();
+    $('#passwordArea').hide();
     if (selectedUser != null) {
         lightdm.cancel_authentication();
         log("authentication cancelled for " + selectedUser);

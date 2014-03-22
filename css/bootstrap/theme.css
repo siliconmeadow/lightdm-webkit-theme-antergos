@@ -412,6 +412,30 @@ matches your images. */
     opacity: .9;
 }
 
+.random {
+    background: rgba(111, 111, 111, 0.65);
+    text-align: center;
+    display: table;
+    color: rgba(255, 255, 255, 0.72);
+    width: 145px;
+    height: 95px;
+    border: 2px solid #ffffff;
+    margin-bottom: 10px;
+    cursor: pointer;
+    padding-top: 35px;
+}
+
+.random span {
+    font-size: 18px;
+}
+.random:hover {
+    color: white;
+    background: rgba(111, 111, 111, 0.85);
+}
+.random.active {
+    border: 2px solid #3d73c5;
+}
+
 
 /* Responsive - Adjustments for resolutions smaller than 1920x1080 */
 
@@ -444,29 +468,11 @@ matches your images. */
         top: 24%;
         left: 2%;
     }
-}
 
-
-.random {
-    background: rgba(111, 111, 111, 0.65);
-    text-align: center;
-    display: table;
-    color: rgba(255, 255, 255, 0.72);
-    width: 145px;
-    height: 95px;
-    border: 2px solid #ffffff;
-    margin-bottom: 10px;
-    cursor: pointer;
-    padding-top: 35px;
-}
-
-.random span {
-    font-size: 18px;
-}
-.random:hover {
-    color: white;
-    background: rgba(111, 111, 111, 0.85);
-}
-.random.active {
-    border: 2px solid #3d73c5;
+    .random {
+        width: 102px;
+        height: 67px;
+        margin-bottom: 5px;
+        padding-top: 18px;
+    }
 }
