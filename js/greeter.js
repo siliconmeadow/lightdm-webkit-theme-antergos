@@ -10,9 +10,9 @@ $(document).ready(function () {
     get_hostname();
 
     // User list building
-    var userList = document.getElementById('user-list');
+    var userList = document.getElementById('user-list2');
 
-    for (i in lightdm.users) {
+    /*for (i in lightdm.users) {
         user = lightdm.users[i];
         var tux = 'img/antergos-logo-user.png';
         var imageSrc = user.image.length > 0 ? user.image : tux;
@@ -22,6 +22,17 @@ $(document).ready(function () {
             '<img src="' + imageSrc + '" class="img-circle" alt="' + user.display_name + '" onerror="imgNotFound(this)"/> ' +
             '</a>' +
             '</li>';
+        $(userList).append(li);
+    }*/
+
+    for (i in lightdm.users) {
+        user = lightdm.users[i];
+        var tux = 'img/antergos-logo-user.png';
+        var imageSrc = user.image.length > 0 ? user.image : tux;
+        var li ='<a href="#' + user.name + '" class="list-group-item ' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')">' +
+            '<img src="' + imageSrc + '" class="img-square" alt="' + user.display_name + '" onerror="imgNotFound(this)"/> ' +
+            '<span>' + user.display_name + '</span>' +
+            '</a>';
         $(userList).append(li);
     }
 
@@ -130,8 +141,14 @@ function handleAction(id) {
 
 function startAuthentication(userId) {
     log("startAuthentication(" + userId + ")");
-    cancelAuthentication();
+    if (selectedUser != null) {
+        lightdm.cancel_authentication();
+        log("authentication cancelled for " + selectedUser);
+    }
     selectedUser = userId;
+    $("."+selectedUser).addClass('hovered');
+    $("."+selectedUser).siblings().hide();
+    $('.fa-toggle-down').hide();
     $('#passwordArea').show();
     lightdm.start_authentication(selectedUser);
 }
@@ -193,7 +210,7 @@ function authentication_complete() {
 
 function show_message(text) {
     msgWrap = document.getElementById('#statusArea');
-    showMsg = document.getElementById('showMsg');
+    showMsg = document.getElementById('#showMsg');
     showMsg.innerHTML = text;
     if (text.length > 0) {
         msgWrap.show();
