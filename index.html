@@ -14,11 +14,11 @@
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/prettify.css">
 
     <!-- Custom CSS here -->
     <link rel="stylesheet" type="text/css" href="css/bootstrap/theme.css">
     <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css"/>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-select.css">
 
     <!-- The order in which each script appears in document is VERY IMPORTANT -->
     <script src="js/jquery-1.10.2.js"></script>
@@ -219,14 +219,14 @@
                                         <div id="collapseTwo" class="panel-collapse collapse">
                                             <div class="panel-body">
 
-                                                <div class="user-wrap">
-                                                    <div class="user-selection">
-                                                        <ul id="user-list">
-                                                        </ul>
-                                                        <a id="user-target" class="user-toggle" data-toggle="collapse"
-                                                           data-parent="#accordion" href="#collapseOne">
-                                                            <i class="fa fa-toggle-down"></i> </a>
-                                                    </div>
+                                                <div class="user-wrap2">
+
+                                                        <div id="user-list2" class="list-group">
+                                                        </div>
+                                                        <a id="user-target2" class="user-toggle" data-toggle="collapse"
+                                                           data-parent="#accordion" href="#collapseOne" onclick="cancelAuthentication()">
+                                                            <i class="fa fa-toggle-down" style="position:absolute;"></i> </a>
+
 
                                                 </div>
                                                 <!-- Password Input -->
@@ -274,7 +274,7 @@
                                                             <td>
                                                                 <div class="alert alert-danger  fade in">
                                                                     <button type="button" class="close"
-                                                                            onclick="startAuthentication()"
+                                                                            onclick="cancelAuthentication()"
                                                                             data-dismiss="alert"
                                                                             aria-hidden="true">&nbsp;&times;</button>
                                                                     <span id="showMsg">

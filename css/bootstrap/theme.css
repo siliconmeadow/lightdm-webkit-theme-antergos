@@ -92,6 +92,24 @@ a {
     cursor: pointer;
 }
 
+.hovered {
+    text-decoration: none;
+    background-color: #ecf0f1;
+}
+
+#user-list2 {
+   width: 100%;
+}
+
+#user-list2 span {
+    font-size: 25px;
+}
+
+#user-list2 img {
+  width: 60px;
+    margin-right: 15px;
+}
+
 #bg-switch-wrapper {
     margin-right: -250px;
     right: 0;
@@ -434,6 +452,12 @@ matches your images. */
 }
 .random.active {
     border: 2px solid #3d73c5;
+}
+
+.user-wrap2 {
+    max-width: 60%;
+    margin: 0 auto;
+    display: -webkit-box;
 }
 
 
