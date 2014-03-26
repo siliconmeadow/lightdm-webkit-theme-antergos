@@ -69,27 +69,28 @@ function get_hostname() {
  *
  *
  */
+ 
 function update_time() {
     var time = document.getElementById("current_time");
     var date = new Date();
     var twelveHr = [
-        'sq-AL',
-        'zh-CN',
-        'zh-TW',
-        'en-AU',
-        'en-BZ',
-        'en-CA',
-        'en-CB',
-        'en-JM',
-        'en-NG',
-        'en-NZ',
-        'en-PH',
-        'en-US',
-        'en-TT',
-        'en-ZW',
-        'es-US',
-        'es-MX'];
-    var userLang = navigator.language || navigator.userLanguage;
+        'sq-al',
+        'zh-cn',
+        'zh-tw',
+        'en-au',
+        'en-bz',
+        'en-ca',
+        'en-cb',
+        'en-jm',
+        'en-ng',
+        'en-nz',
+        'en-ph',
+        'en-us',
+        'en-tt',
+        'en-zw',
+        'es-us',
+        'es-mx'];
+    var userLang = window.navigator.language;
     var is_twelveHr = twelveHr.indexOf(userLang);
     var hh = date.getHours();
     var mm = date.getMinutes();
@@ -110,8 +111,10 @@ function update_time() {
 }
 
 function initialize_timer() {
+    var userLang = window.navigator.language;
+    log(userLang);
     update_time();
-    setInterval(update_time, 1000);
+    setInterval(update_time, 60000);
 }
 
 function addActionLink(id) {
