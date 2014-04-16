@@ -197,13 +197,13 @@
                                 <span class="welcome">Welcome!</span>
                                 <span id="hostname" class="pull-right"></span>
                             </div>
-                            <div class="panel-body">
+                            <div id="panelfix" class="panel-body">
                                 <div class="panel-group" id="accordion">
                                     <div class="panel panel-default panel-shadow time-panel">
 
 
                                         <div id="collapseOne" class="panel-collapse collapse in">
-                                            <div class="panel-body panel-shadow time-panel text-center">
+                                            <div id="timewrap" class="panel-body panel-shadow time-panel text-center">
                                                 <a id="trigger" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
                                                     <!-- Clock Widget -->
                                                     <span id="current_time" class="time text-center"></span><i
@@ -217,7 +217,7 @@
                                     <div class="panel panel-default panel-shadow panel-flow">
                                         <!-- User Selection Widget -->
                                         <div id="collapseTwo" class="panel-collapse collapse">
-                                            <div class="panel-body">
+                                            <div id="list-group" class="panel-body panel-wrap">
 
                                                 <div class="user-wrap2">
 
@@ -226,6 +226,7 @@
                                                         <a id="user-target2" class="user-toggle" data-toggle="collapse"
                                                            data-parent="#accordion" href="#collapseOne" onclick="cancelAuthentication()">
                                                             <i class="fa fa-toggle-down" style="position:absolute;"></i> </a>
+
 
 
                                                 </div>
