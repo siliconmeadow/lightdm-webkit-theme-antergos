@@ -34,6 +34,19 @@ src: url('../../font-awesome/fonts/Lato-Light.ttf');
     background-color: #b3b3b3;
 }
 
+.user-wrap2::-webkit-scrollbar {
+    width: 4px;
+}
+.user-wrap2::-webkit-scrollbar-track {
+    background-color: #eaeaea;
+    border-left: 1px solid #ccc;
+}
+.user-wrap2::-webkit-scrollbar-thumb {
+    background-color: #5d5d5d;
+}
+.user-wrap2::-webkit-scrollbar-thumb:hover {
+    background-color: #b3b3b3;
+}
 .close_wallpapers{
     padding: 2px 10px !important;
 }
@@ -52,9 +65,9 @@ i {
 
 h3, .panel-heading {
     font-family: "Lato", "Open Sans", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     text-align: center;
-    font-weight: 500;
+    font-weight: 400;
 }
 
 a {
@@ -102,12 +115,12 @@ a {
 }
 
 #user-list2 span {
-    font-size: 25px;
+    font-size: 19px;
 }
 
 #user-list2 img {
-  width: 60px;
-    margin-right: 15px;
+  width: 40px;
+    margin-right: 10px;
 }
 
 #bg-switch-wrapper {
@@ -163,6 +176,19 @@ a {
 
 }
 
+#user-target2 i {
+   right:  -21px;
+    color: #2c3e50;
+    font-size: 14px;
+}
+#trigger i {
+    color: #2c3e50;
+    font-size: 14px;
+    position: relative;
+    top: 9.5px;
+    right: 5px;
+}
+
 /* Clock Widget */
 
 .time {
@@ -173,7 +199,13 @@ a {
     color: #3d73c5;
     background-color: rgb(252, 247, 247);
     transition: 1s ease-out;
+    position: relative;
+    top: 10.5px;
 
+}
+
+#panelfix {
+    height: 170px !important;
 }
 
 .time-panel a {
@@ -202,10 +234,14 @@ a {
 
 /* Login Dialog */
 
+
 .welcome {
+   font-weight:500;
+    font-size: 17px;
     position: relative;
-    left:-1%;
+    right: 9px;
 }
+
 
 .login-wrapper {
     list-style-type: none;
@@ -218,7 +254,7 @@ a {
 }
 
 .login-box {
-    min-height: 175px;
+    min-height: 250px;
 }
 .panel-shadow {
     box-shadow: none !important;
@@ -229,8 +265,26 @@ a {
     background-color: rgb(252, 247, 247);
 }
 
+.badge {
+    color: #2c3e50;
+}
+.badge, .badge i {
+    font-size: 10px !important;
+    display: none;
+}
+.list-group-item.hovered .badge,
+.list-group-item.hovered .badge i  {
+    display: block;
+
+}
 .panel-heading {
-    padding: 10px !important;
+    padding: 10px 20px !important;
+}
+.panel-footer  .btn {
+padding-top: 6.5px;
+padding-bottom: 6.5px;
+padding-left: 12px;
+padding-right: 12px;
 }
 
 .panel-body {
@@ -254,8 +308,18 @@ div.password, div.status, div.timer {
     text-align: center;
     position: relative;
     display: none;
+    width: 47%;
+    margin: 0 auto;
 }
-
+.form-control {
+    height: 36px;
+}
+#passwordArea .btn {
+    padding-top: 6.5px;
+    padding-bottom: 6.5px;
+    padding-left: 12px;
+    padding-right: 12px;
+}
 #logArea {
     position: absolute;
     top: 25%;
@@ -455,9 +519,15 @@ matches your images. */
 }
 
 .user-wrap2 {
-    max-width: 60%;
+    max-width: 50%;
     margin: 0 auto;
     display: -webkit-box;
+    max-height: 124px;
+    overflow: auto;
+}
+
+#list-group {
+padding: 0px;
 }
 
 

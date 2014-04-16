@@ -32,10 +32,18 @@ $(document).ready(function () {
         var li ='<a href="#' + user.name + '" class="list-group-item ' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')">' +
             '<img src="' + imageSrc + '" class="img-square" alt="' + user.display_name + '" onerror="imgNotFound(this)"/> ' +
             '<span>' + user.display_name + '</span>' +
+            '<span class="badge"><i class="fa fa-check"></i></span>' +
             '</a>';
         $(userList).append(li);
     }
-
+    // Build Session List
+/*function buildSessionList(selectedUser) {
+    selectedUser
+    for (i in lightdm.sessions) {
+        session = lightdm.sessions[i];
+        if (session.key == lightdm.user.session)
+            if (session.key == lightdm.default_session)
+                }*/
     // Password key trigger registering
     $("#passwordField").keypress(function () {
         log("keypress(" + event.which + ")");
@@ -164,6 +172,9 @@ function cancelAuthentication() {
     if (selectedUser != null) {
         lightdm.cancel_authentication();
         log("authentication cancelled for " + selectedUser);
+        $("."+selectedUser).removeClass('hovered');
+        $("."+selectedUser).siblings().show();
+        $('.fa-toggle-down').show();
         selectedUser = null;
     }
     return true;
