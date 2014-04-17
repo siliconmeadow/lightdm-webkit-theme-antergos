@@ -7,7 +7,7 @@ if (typeof lightdm == 'undefined') {
 	lightdm.layouts= [{name: "test", short_description: "test description", short_description:"really long epic description"}];
 	lightdm.default_layout= lightdm.layouts[0];
 	lightdm.layout= lightdm.layouts[0];
-	lightdm.sessions=[{key: "key1", name: "session 1", comment: "no comment"}, {key: "key2", name: "session 2", comment: "no comment"}];
+	lightdm.sessions=[{key: "key1", name: "gnome", comment: "no comment"}, {key: "key2", name: "cinnamon", comment: "no comment"}];
 
 	lightdm.default_session=lightdm.sessions[0];
 	lightdm.authentication_user= null;
@@ -18,9 +18,9 @@ if (typeof lightdm == 'undefined') {
 	lightdm.can_shutdown= true;
 
 	lightdm.users = [
-        { name: "clarkk", real_name: "Superman", display_name: "Clark Kent", image: "", language: "en_US", layout: null, session: null, logged_in: false },
-        { name: "brucew", real_name: "Batman", display_name: "Bruce Wayne", image: "", language: "en_US", layout: null, session: null, logged_in: false},
-        { name: "peterp", real_name: "Spiderman", display_name: "Peter Parker", image: "", language: "en_US", layout: null, session: null, logged_in: true},
+        { name: "clarkk", real_name: "Superman", display_name: "Clark Kent", image: "", language: "en_US", layout: null, session: "gnome", logged_in: false },
+        { name: "brucew", real_name: "Batman", display_name: "Bruce Wayne", image: "", language: "en_US", layout: null, session: "cinnamon", logged_in: false},
+        { name: "peterp", real_name: "Spiderman", display_name: "Peter Parker", image: "", language: "en_US", layout: null, session: "gnome", logged_in: true},
     ];
 
 	lightdm.num_users= lightdm.users.length;

@@ -24,26 +24,36 @@ $(document).ready(function () {
             '</li>';
         $(userList).append(li);
     }*/
-
+    var x=0
     for (i in lightdm.users) {
         user = lightdm.users[i];
         var tux = 'img/antergos-logo-user.png';
         var imageSrc = user.image.length > 0 ? user.image : tux;
-        var li ='<a href="#' + user.name + '" class="list-group-item ' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')">' +
+
+        var li = '<a href="#' + user.name + '" class="list-group-item ' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')">' +
             '<img src="' + imageSrc + '" class="img-square" alt="' + user.display_name + '" onerror="imgNotFound(this)"/> ' +
             '<span>' + user.display_name + '</span>' +
             '<span class="badge"><i class="fa fa-check"></i></span>' +
             '</a>';
         $(userList).append(li);
     }
+
     // Build Session List
-/*function buildSessionList(selectedUser) {
-    selectedUser
     for (i in lightdm.sessions) {
+        x+1;
         session = lightdm.sessions[i];
-        if (session.key == lightdm.user.session)
-            if (session.key == lightdm.default_session)
-                }*/
+        var btnGrp = document.getElementById('sessions');
+        var button = '<button id="' + session.name + '" type="button" class="btn btn-default" onclick="sessionToggle(this)">' + session.name + '</button>';
+        if(x<=3) {
+        $(btnGrp).append(button);
+        }else{
+            $(button).addClass('hidden').appendTo(btnGrp);
+        }
+    }
+
+    $('#sessions').hide();
+
+
     // Password key trigger registering
     $("#passwordField").keypress(function () {
         log("keypress(" + event.which + ")");
@@ -77,7 +87,7 @@ function get_hostname() {
  *
  *
  */
- 
+
 function update_time() {
     var time = document.getElementById("current_time");
     var date = new Date();
@@ -150,6 +160,18 @@ function handleAction(id) {
     eval("lightdm." + id + "()");
 }
 
+function getUserObj(username) {
+	var user= null;
+	for (var i= 0; i < lightdm.users.length; ++i) {
+		if (lightdm.users[i].name == username) {
+			user= lightdm.users[i];
+			break;
+		}
+	}
+	return user;
+}
+
+
 function startAuthentication(userId) {
     log("startAuthentication(" + userId + ")");
     if (selectedUser != null) {
@@ -157,9 +179,20 @@ function startAuthentication(userId) {
         log("authentication cancelled for " + selectedUser);
     }
     selectedUser = userId;
-    $("."+selectedUser).addClass('hovered');
-    $("."+selectedUser).siblings().hide();
+    $("." + selectedUser).addClass('hovered');
+    $("." + selectedUser).siblings().hide();
     $('.fa-toggle-down').hide();
+    var user = getUserObj(selectedUser);
+    if (typeof usrSession === 'undefined') {
+        if (user.session) {
+            usrSession = user.session;
+        }else{
+            var session = lightdm.default_session;
+            usrSession = session.name;
+        }
+    }
+    $("#" + usrSession).button('toggle');
+    $('#sessions').show();
     $('#passwordArea').show();
     lightdm.start_authentication(selectedUser);
 }
@@ -169,11 +202,12 @@ function cancelAuthentication() {
     $('#statusArea').hide();
     $('#timerArea').hide();
     $('#passwordArea').hide();
+    $('#sessions').hide();
     if (selectedUser != null) {
         lightdm.cancel_authentication();
         log("authentication cancelled for " + selectedUser);
-        $("."+selectedUser).removeClass('hovered');
-        $("."+selectedUser).siblings().show();
+        $("." + selectedUser).removeClass('hovered');
+        $("." + selectedUser).siblings().show();
         $('.fa-toggle-down').show();
         selectedUser = null;
     }
@@ -212,11 +246,11 @@ function show_prompt(text) {
 function authentication_complete() {
     log("authentication_complete()");
     $('#timerArea').hide();
+    var theSession = $('#sessions .btn.active').attr('id');
     if (lightdm.is_authenticated) {
         log("authenticated !");
-        lightdm.login(lightdm.authentication_user, lightdm.default_session);
-    }
-    else {
+        lightdm.login(lightdm.authentication_user, theSession);
+    } else {
         log("not authenticated !");
         $('#statusArea').show();
     }

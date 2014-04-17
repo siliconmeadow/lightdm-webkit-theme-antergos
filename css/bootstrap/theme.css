@@ -20,6 +20,10 @@ font-family: LatoLight;
 src: url('../../font-awesome/fonts/Lato-Light.ttf');
 }
 
+.hidden {
+    display: none;
+}
+
 ::-webkit-scrollbar {
     width: 12px;
 }
