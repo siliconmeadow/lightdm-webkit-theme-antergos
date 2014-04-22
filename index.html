@@ -293,8 +293,13 @@
                                 </div>
 
                                 <div class="panel-footer">
+                                    <div id="session-list" class="btn-group pull-left hidden">
+  <button type="button" class="btn btn-primary selected"></button>
+  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+  <ul id="sessions" class="dropdown-menu">
+  </ul>
+</div>
                                                 <div id="actionsArea" class="btn-group pull-right"></div>
-                                                <div id="sessions" class="btn-group pull-left hidden"></div>
 
                                         </div>
 
@@ -339,11 +344,10 @@
         });
 
         function sessionToggle(el) {
-            if ($(el).hasClass('active')) {
-                return;
-            }
-            $(el).button('toggle');
-            $(el).siblings().button('toggle');
+           var selText = $(el).text();
+            var theID = $(el).attr('id');
+           $(el).parents('.btn-group').find('.selected').attr('id', theID);
+           $(el).parents('.btn-group').find('.selected').html(selText);
         }
     </script>
 

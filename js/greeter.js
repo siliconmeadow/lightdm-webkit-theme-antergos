@@ -42,7 +42,7 @@ $(document).ready(function () {
     for (i in lightdm.sessions) {
         var session = lightdm.sessions[i];
         var btnGrp = document.getElementById('sessions');
-        var button = '\n<button id="' + session.name + '" type="button" class="btn btn-default" onclick="sessionToggle(this)">' + session.name + '</button>';
+        var button = '\n<li><a href="#" id="' + session.key + '" onclick="sessionToggle(this)">' + session.name + '</a></li>';
 
             $(btnGrp).append(button);
 
@@ -147,7 +147,7 @@ function addActionLink(id) {
         if (id == "restart") {
             id2 = "refresh"
         }
-        $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + '" title="' + label + '" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
+        $("#actionsArea").append('\n<button type="button" class="btn btn-default ' + id + '" data-toggle="tooltip" data-placement="top" title="' + label + '" data-container="body" onclick="handleAction(\'' + id + '\')"><i class="fa fa-' + id2 + '"></i></button>');
     }
 }
 
@@ -198,10 +198,10 @@ function startAuthentication(userId) {
             usrSession = lightdm.default_session['name'];
         }
     }
-    var theBtn = '#' + usrSession;
-    $(theBtn).button('toggle');
-    $('#sessions').removeClass('hidden');
-    $('#actionsArea').addClass('hidden');
+    $('.selected').html(usrSession);
+    var user = getSessionObj(usrSession);
+    $('.selected').attr('id', user.key);
+    $('#session-list').removeClass('hidden');
     $('#passwordArea').show();
     lightdm.start_authentication(userId);
 }
@@ -211,7 +211,7 @@ function cancelAuthentication() {
     $('#statusArea').hide();
     $('#timerArea').hide();
     $('#passwordArea').hide();
-    $('#sessions').hide();
+    $('#session-list').hide();
     if (selectedUser != null) {
         lightdm.cancel_authentication();
         log("authentication cancelled for " + selectedUser);
@@ -254,8 +254,7 @@ function show_prompt(text) {
 function authentication_complete() {
     log("authentication_complete()");
     $('#timerArea').hide();
-    var theSession = $('#sessions .btn.active').attr('id');
-    var theKey = getSessionObj(theSession);
+    var theSession = $('.selected').attr('id');
     if (lightdm.is_authenticated) {
         log("authenticated !");
         lightdm.login(lightdm.authentication_user, theKey.key);
