@@ -210,6 +210,7 @@ a {
 
 #panelfix {
     height: 170px !important;
+    overflow: visible;
 }
 
 .time-panel a {
@@ -304,7 +305,12 @@ padding-right: 12px;
 }
 
 .panel-footer {
-    padding: 5px !important;
+    padding: 5px 15px;
+
+}
+
+.panel-flow {
+    overflow:visible !important;
 }
 
 .password ul {
@@ -541,6 +547,7 @@ matches your images. */
 
 #list-group {
 padding: 0px;
+    overflow: visible;
 }
 
 
