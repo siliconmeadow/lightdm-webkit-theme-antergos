@@ -291,22 +291,27 @@
 
                                     </div>
                                 </div>
-                                <div class="panel-footer">
-                                    <div class="btn-toolbar">
-                                        <div id="sessions" class="btn-group btn pull-left"></div>
-                                        <div id="actionsArea" class="btn-group btn pull-right"></div>
-                                    </div>
-                                </div>
 
+                                <div class="panel-footer">
+                                                <div id="actionsArea" class="btn-group pull-right"></div>
+                                                <div id="sessions" class="btn-group pull-left hidden"></div>
+
+                                        </div>
+
+
+
+
+                                </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div id="logArea" class="log"></div>
         </div>
-    </div>
+
+        <div id="logArea" class="log"></div>
+
 
 
     <!-- Custom JavaScript for the BG Switcher & Clock Toggle -->
@@ -336,10 +341,10 @@
         function sessionToggle(el) {
             if ($(el).hasClass('active')) {
                 return;
-        }
+            }
             $(el).button('toggle');
             $(el).siblings().button('toggle');
-            }
+        }
     </script>
 
 </body>
