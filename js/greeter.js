@@ -30,7 +30,7 @@ $(document).ready(function () {
         var tux = 'img/antergos-logo-user.png';
         var imageSrc = user.image.length > 0 ? user.image : tux;
 
-        var li = '<a href="#' + user.name + '" class="list-group-item ' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')">' +
+        var li = '<a href="#' + user.name + '" class="list-group-item ' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')" session="' + user.session + '">' +
             '<img src="' + imageSrc + '" class="img-square" alt="' + user.display_name + '" onerror="imgNotFound(this)"/> ' +
             '<span>' + user.display_name + '</span>' +
             '<span class="badge"><i class="fa fa-check"></i></span>' +
@@ -44,7 +44,7 @@ $(document).ready(function () {
         var btnGrp = document.getElementById('sessions');
         var button = '\n<li><a href="#" id="' + session.key + '" onclick="sessionToggle(this)">' + session.name + '</a></li>';
 
-            $(btnGrp).append(button);
+        $(btnGrp).append(button);
 
 
     }
@@ -189,21 +189,15 @@ function startAuthentication(userId) {
     $(selectedUser).addClass('hovered');
     $(selectedUser).siblings().hide();
     $('.fa-toggle-down').hide();
-    var user = getUserObj(userId);
-    if (typeof usrSession === 'undefined') {
-        var usrSession;
-        if (user.session) {
-            usrSession = user.session;
-        } else {
-            usrSession = lightdm.default_session['name'];
-        }
+    var usrSession = $(selectedUser).attr('session');
+
+    if (usrSession == null) {
+        usrSession = lightdm.default_session;
     }
-    $('.selected').html(usrSession);
-    var user = getSessionObj(usrSession);
-    $('.selected').attr('id', user.key);
-    $('#session-list').removeClass('hidden');
-    $('#passwordArea').show();
-    lightdm.start_authentication(userId);
+$('.selected').html(usrSession);
+$('#session-list').removeClass('hidden');
+$('#passwordArea').show();
+lightdm.start_authentication(userId);
 }
 
 function cancelAuthentication() {
@@ -257,7 +251,7 @@ function authentication_complete() {
     var theSession = $('.selected').attr('id');
     if (lightdm.is_authenticated) {
         log("authenticated !");
-        lightdm.login(lightdm.authentication_user, theKey.key);
+        lightdm.login(lightdm.authentication_user, theSession);
     } else {
         log("not authenticated !");
         $('#statusArea').show();
