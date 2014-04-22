@@ -21,7 +21,7 @@ src: url('../../font-awesome/fonts/Lato-Light.ttf');
 }
 
 .hidden {
-    display: none;
+   opacity: 0;
 }
 
 ::-webkit-scrollbar {
@@ -284,6 +284,13 @@ a {
 .panel-heading {
     padding: 10px 20px !important;
 }
+.panel-footer {
+    height: 50px;
+}
+
+#sessions, #actionsArea {
+    transition: all ease 3s;
+}
 .panel-footer  .btn {
 padding-top: 6.5px;
 padding-bottom: 6.5px;
@@ -294,10 +301,6 @@ padding-right: 12px;
 .panel-body {
     background-color: rgb(252, 247, 247);
     padding: 10px;
-}
-
-.panel-flow {
-    overflow: visible !important;
 }
 
 .panel-footer {
@@ -314,6 +317,12 @@ div.password, div.status, div.timer {
     display: none;
     width: 47%;
     margin: 0 auto;
+}
+
+.password {
+    font-size: 14px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
 }
 .form-control {
     height: 36px;
@@ -534,8 +543,6 @@ matches your images. */
 padding: 0px;
 }
 
-
-/* Responsive - Adjustments for resolutions smaller than 1920x1080 */
 
 @media (max-width: 1900px) {
 
