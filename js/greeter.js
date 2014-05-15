@@ -151,6 +151,11 @@ function addActionLink(id) {
     }
 }
 
+function capitalize(string)
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function handleAction(id) {
     log("handleAction(" + id + ")");
     eval("lightdm." + id + "()");
@@ -194,7 +199,8 @@ function startAuthentication(userId) {
     if (usrSession == null) {
         usrSession = lightdm.default_session;
     }
-$('.selected').html(usrSession);
+    var usrSessionFix = capitalize(usrSession);
+$('.selected').html(usrSessionFix);
 $('#session-list').removeClass('hidden');
 $('#passwordArea').show();
 lightdm.start_authentication(userId);
@@ -234,7 +240,6 @@ function imgNotFound(source) {
     return true;
 }
 
-
 /**
  * Lightdm Callbacks
  */
@@ -249,9 +254,10 @@ function authentication_complete() {
     log("authentication_complete()");
     $('#timerArea').hide();
     var theSession = $('.selected').attr('id');
+    var theSessionFix = capitalize(theSession);
     if (lightdm.is_authenticated) {
         log("authenticated !");
-        lightdm.login(lightdm.authentication_user, theSession);
+        lightdm.login(lightdm.authentication_user, theSessionFix);
     } else {
         log("not authenticated !");
         $('#statusArea').show();
