@@ -29,8 +29,13 @@ $(document).ready(function () {
         var user = lightdm.users[i];
         var tux = 'img/antergos-logo-user.png';
         var imageSrc = user.image.length > 0 ? user.image : tux;
-
-        var li = '<a href="#' + user.name + '" class="list-group-item ' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')" session="' + user.session + '">' +
+        var lastSession = localStorage.getItem(user.name);
+        if (lastSession == null || lastSession == undefined) {
+            localStorage.setItem(user.name, lightdm.default_session);
+            lastSession = localStorage.getItem(user.name);
+        }
+        log('Last Session (' + user.name + '): ' + lastSession);
+        var li = '<a href="#' + user.name + '" class="list-group-item ' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')" session="' + lastSession + '">' +
             '<img src="' + imageSrc + '" class="img-square" alt="' + user.display_name + '" onerror="imgNotFound(this)"/> ' +
             '<span>' + user.display_name + '</span>' +
             '<span class="badge"><i class="fa fa-check"></i></span>' +
@@ -42,7 +47,8 @@ $(document).ready(function () {
     for (i in lightdm.sessions) {
         var session = lightdm.sessions[i];
         var btnGrp = document.getElementById('sessions');
-        var button = '\n<li><a href="#" id="' + session.key + '" onclick="sessionToggle(this)">' + session.name + '</a></li>';
+        var theClass = session.name.replace(/ /g, '');
+        var button = '\n<li><a href="#" id="' + session.key + '" onclick="sessionToggle(this)" class="' + theClass + '">' + session.name + '</a></li>';
 
         $(btnGrp).append(button);
 
@@ -151,8 +157,7 @@ function addActionLink(id) {
     }
 }
 
-function capitalize(string)
-{
+function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -186,28 +191,29 @@ function getSessionObj(sessionname) {
 
 function startAuthentication(userId) {
     log("startAuthentication(" + userId + ")");
-    
+
     if (selectedUser !== null) {
         lightdm.cancel_authentication();
         log("authentication cancelled for " + selectedUser);
     }
-    
+
     selectedUser = '.' + userId;
     $(selectedUser).addClass('hovered');
     $(selectedUser).siblings().hide();
     $('.fa-toggle-down').hide();
-    
-    var usrSession = $(selectedUser).attr('session');
 
-    if (usrSession == null || usrSession == undefined) {
-        usrSession = lightdm.default_session;
-    }
-    
-    var usrSessionFix = capitalize(usrSession);
-    $('.selected').html(usrSessionFix);
+
+    var usrSession = localStorage.getItem(userId);
+
+    log("usrSession: " + usrSession);
+    var usrSessionEl = "#" + usrSession;
+    var usrSessionName = $(usrSessionEl).html();
+    log("usrSessionName: " + usrSessionName);
+    $('.selected').html(usrSessionName);
+    $('.selected').attr('id', usrSession);
     $('#session-list').removeClass('hidden');
     $('#passwordArea').show();
-    
+
     lightdm.start_authentication(userId);
 }
 
@@ -258,11 +264,10 @@ function show_prompt(text) {
 function authentication_complete() {
     log("authentication_complete()");
     $('#timerArea').hide();
-    var theSession = $('.selected').attr('id');
-    var theSessionFix = capitalize(theSession);
+    var selSession = $('.selected').attr('id');
     if (lightdm.is_authenticated) {
         log("authenticated !");
-        lightdm.login(lightdm.authentication_user, theSessionFix);
+        lightdm.login(lightdm.authentication_user, selSession);
     } else {
         log("not authenticated !");
         $('#statusArea').show();
