@@ -186,24 +186,29 @@ function getSessionObj(sessionname) {
 
 function startAuthentication(userId) {
     log("startAuthentication(" + userId + ")");
+    
     if (selectedUser !== null) {
         lightdm.cancel_authentication();
         log("authentication cancelled for " + selectedUser);
     }
+    
     selectedUser = '.' + userId;
     $(selectedUser).addClass('hovered');
     $(selectedUser).siblings().hide();
     $('.fa-toggle-down').hide();
+    
     var usrSession = $(selectedUser).attr('session');
 
-    if (usrSession == null) {
+    if (usrSession == null || usrSession == undefined) {
         usrSession = lightdm.default_session;
     }
+    
     var usrSessionFix = capitalize(usrSession);
-$('.selected').html(usrSessionFix);
-$('#session-list').removeClass('hidden');
-$('#passwordArea').show();
-lightdm.start_authentication(userId);
+    $('.selected').html(usrSessionFix);
+    $('#session-list').removeClass('hidden');
+    $('#passwordArea').show();
+    
+    lightdm.start_authentication(userId);
 }
 
 function cancelAuthentication() {
