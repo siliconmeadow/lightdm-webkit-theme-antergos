@@ -338,17 +338,10 @@
 
          // Show user list when pressed any key
         $(document).keypress(function(e) {
-            if ($('#collapseOne').hasClass('in')) {
-                $('#trigger').trigger('click');
-            }
+
         });
 
-        function sessionToggle(el) {
-           var selText = $(el).text();
-            var theID = $(el).attr('id');
-           $(el).parents('.btn-group').find('.selected').attr('id', theID);
-           $(el).parents('.btn-group').find('.selected').html(selText);
-        }
+
     </script>
 
 </body>
