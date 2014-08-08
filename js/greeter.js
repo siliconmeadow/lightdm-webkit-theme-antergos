@@ -1,31 +1,12 @@
 var DEBUG = true;
 var selectedUser = null;
+var auth_pending = null;
+var users_shown = null;
 
-/**
- * UI Initialization.
- */
-$(document).ready(function () {
-
-    initialize_timer();
-    get_hostname();
-
-    // User list building
+function buildUserList() {
+// User list building
     var userList = document.getElementById('user-list2');
-
-    /*for (i in lightdm.users) {
-     user = lightdm.users[i];
-     var tux = 'img/antergos-logo-user.png';
-     var imageSrc = user.image.length > 0 ? user.image : tux;
-     var li = '<li id="' + user.name + '">' +
-     '<a href="#' + user.name + '" onclick="startAuthentication(\'' + user.name + '\')">' +
-     '<em><span>' + user.display_name + '</span></em>' +
-     '<img src="' + imageSrc + '" class="img-circle" alt="' + user.display_name + '" onerror="imgNotFound(this)"/> ' +
-     '</a>' +
-     '</li>';
-     $(userList).append(li);
-     }*/
-    var x = 0
-    for (i in lightdm.users) {
+    for (var i in lightdm.users) {
         var user = lightdm.users[i];
         var tux = 'img/antergos-logo-user.png';
         var imageSrc = user.image.length > 0 ? user.image : tux;
@@ -42,8 +23,9 @@ $(document).ready(function () {
             '</a>';
         $(userList).append(li);
     }
-
-    // Build Session List
+}
+function buildSessionList() {
+// Build Session List
     for (i in lightdm.sessions) {
         var session = lightdm.sessions[i];
         var btnGrp = document.getElementById('sessions');
@@ -54,22 +36,30 @@ $(document).ready(function () {
 
 
     }
+}
+function show_users() {
+    if ($('#collapseOne').hasClass('in')) {
+        $('#trigger').trigger('click');
+        users_shown = true;
+    }
+    if ($('#user-list2 a').length <= 1) $('#user-list2 a').trigger('click');
 
+}
+/**
+ * UI Initialization.
+ */
+$(document).ready(function () {
 
-    // Password key trigger registering
-    $("#passwordField").keypress(function () {
-        log("keypress(" + event.which + ")");
-        if (event.which == 13) { // 'Enter' key
-            submitPassword();
-        }
+    initialize_timer();
+    get_hostname();
 
+    buildUserList();
+    buildSessionList();
+    // Password submit when enter key is pressed
+
+    $(document).keydown(function (e) {
+        checkKey(e);
     });
-    $(document).keyup(function (e) {
-        if (e.keyCode == 27) { // 'Escape' char
-            cancelAuthentication();
-        }
-    });
-
     // Action buttons
     addActionLink("shutdown");
     addActionLink("hibernate");
@@ -137,6 +127,26 @@ function initialize_timer() {
     setInterval(update_time, 60000);
 }
 
+function checkKey(event){
+    var action;
+    switch (event.which) {
+        case 13:
+            action = auth_pending ? submitPassword() : !users_shown ? show_users() : 0;
+            log(action);
+            break;
+        case 27:
+            action = auth_pending ? cancelAuthentication() : 0;
+            log(action);
+            break;
+        case 32:
+            action = !users_shown ? show_users() : 0;
+            log(action);
+            break;
+        default:
+            break;
+    }
+}
+
 function addActionLink(id) {
     if (eval("lightdm.can_" + id)) {
         var label = id.substr(0, 1).toUpperCase() + id.substr(1, id.length - 1);
@@ -194,9 +204,10 @@ function startAuthentication(userId) {
 
     if (selectedUser !== null) {
         lightdm.cancel_authentication();
+        localStorage.setItem('selUser', null);
         log("authentication cancelled for " + selectedUser);
     }
-
+    localStorage.setItem('selUser', userId);
     selectedUser = '.' + userId;
     $(selectedUser).addClass('hovered');
     $(selectedUser).siblings().hide();
@@ -213,6 +224,7 @@ function startAuthentication(userId) {
     $('.selected').attr('id', usrSession);
     $('#session-list').removeClass('hidden');
     $('#passwordArea').show();
+    auth_pending = true;
 
     lightdm.start_authentication(userId);
 }
@@ -251,6 +263,15 @@ function imgNotFound(source) {
     return true;
 }
 
+function sessionToggle(el) {
+    var selText = $(el).text();
+    var theID = $(el).attr('id');
+    var selUser = localStorage.getItem('selUser');
+    $(el).parents('.btn-group').find('.selected').attr('id', theID);
+    $(el).parents('.btn-group').find('.selected').html(selText);
+    localStorage.setItem(selUser, theID)
+}
+
 /**
  * Lightdm Callbacks
  */
@@ -263,6 +284,7 @@ function show_prompt(text) {
 
 function authentication_complete() {
     log("authentication_complete()");
+    auth_pending = false;
     $('#timerArea').hide();
     var selSession = $('.selected').attr('id');
     if (lightdm.is_authenticated) {
